@@ -5,6 +5,7 @@ import com.s2daw.demo.models.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -24,6 +25,11 @@ public class UsuarioController {
         usuario.setEmail("lucasmoy@hotmail.com");
         usuario.setTelefono("234234234");
         return usuario;
+    }
+
+    @RequestMapping(value="api/usuarios/{id}",method= RequestMethod.DELETE)
+    public void eliminarUsuario(@PathVariable Long id){
+        usuarioDao.eliminarUsuario(id);
     }
     @RequestMapping(value="usuarios")
     public List<Usuario> getUsuarios(){

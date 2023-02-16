@@ -1,33 +1,40 @@
 package com.s2daw.demo.models;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Objects;
 
-
-@ToString
-@Table(name="usuarios")
 @Entity
+@Table(name="usuarios")
 @Getter
 @Setter
+@ToString
+@RequiredArgsConstructor
 public class Usuario {
-    @Column(name="id")
     @Id
-    private Long id;
-    @Column(name="nombre")
-    private String nombre;
-    @Column(name="apellido")
-    private String apellido;
-    @Column(name="email")
-    private String email;
-    @Column(name="telefono")
-    private String telefono;
+    Long id;
+    String nombre;
+    String apellidos;
+    String email;
+    String telefono;
     @Column(name="password")
-    private String password;
+    String password;
+    // Aunque Lombok puede generar equals & hashcode, no es recommendable
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Usuario usuario = (Usuario) o;
+        return id != null && Objects.equals(id, usuario.id);
+    }
 
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

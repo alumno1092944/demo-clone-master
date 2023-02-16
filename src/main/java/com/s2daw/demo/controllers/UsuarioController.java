@@ -14,48 +14,19 @@ import java.util.List;
 public class UsuarioController {
 
     @Autowired
-     private UsuarioDao usuarioDao;
-    @RequestMapping(value="api/usuario/{id}")
-    public Usuario getUsuario(@PathVariable Long id) {
-        Usuario usuario = new Usuario();
+    private UsuarioDao usuarioDao;
+    @RequestMapping(value="usuario/{id}")
+    public Usuario getUsuario(@PathVariable Long id){
+        Usuario usuario=new Usuario();
         usuario.setId(id);
         usuario.setNombre("Lucas");
-        usuario.setApellido("Moy");
+        usuario.setApellidos("Moy");
         usuario.setEmail("lucasmoy@hotmail.com");
         usuario.setTelefono("234234234");
         return usuario;
     }
-    @RequestMapping(value="api/usuarios")
-    public List<Usuario> getUsuarios() {
-        List<Usuario> usuarios = new ArrayList<>();
-
+    @RequestMapping(value="usuarios")
+    public List<Usuario> getUsuarios(){
         return usuarioDao.getUsuarios();
-    }
-    @RequestMapping(value="usuario")
-    public Usuario editar() {
-        Usuario usuario = new Usuario();
-        usuario.setNombre("Lucas");
-        usuario.setApellido("Moy");
-        usuario.setEmail("lucasmoy@hotmail.com");
-        usuario.setTelefono("234234234");
-        return usuario;
-    }
-    @RequestMapping(value="usuario2")
-    public Usuario eliminar() {
-        Usuario usuario = new Usuario();
-        usuario.setNombre("Lucas");
-        usuario.setApellido("Moy");
-        usuario.setEmail("lucasmoy@hotmail.com");
-        usuario.setTelefono("234234234");
-        return usuario;
-    }
-    @RequestMapping(value="usuario3")
-    public Usuario buscar() {
-        Usuario usuario = new Usuario();
-        usuario.setNombre("Lucas");
-        usuario.setApellido("Moy");
-        usuario.setEmail("lucasmoy@hotmail.com");
-        usuario.setTelefono("234234234");
-        return usuario;
     }
 }

@@ -18,6 +18,10 @@ async function iniciarSesion(){
   });
 
     const respuesta = await response.json();
-    if (respuesta.success == 'OK') window.location.href='usuarios.html';
+    if (respuesta.success != 'FAIL') {
+    localStorage.token = respuesta;
+    localStorage.email = datos.email;
+    window.location.href='usuarios.html';
+    }
     else alert('Credenciales incorrectas. Por favor intente nuevamente');
 }

@@ -21,7 +21,7 @@ public class UsuarioDaoImp implements UsuarioDao{
     @Override
     public List<Usuario> getUsuarios() {
         String query="FROM Usuario";
-        return entityManager.createQuery(query).getResultList();
+        return entityManager.createQuery(query, Usuario.class).getResultList();
     }
 
     @Override
@@ -50,6 +50,6 @@ public class UsuarioDaoImp implements UsuarioDao{
         if (argon2.verify(lista.get(0).getPassword(),usuario.getPassword().getBytes())) {
             return lista.get(0);
         }
-        return null;
+        else return null;
     }
 }

@@ -19,7 +19,7 @@ async function iniciarSesion(){
 
     const respuesta = await response.json();
     if (respuesta.success != 'FAIL') {
-    localStorage.token = respuesta;
+    localStorage.token = respuesta.token;
     localStorage.email = datos.email;
     window.location.href='usuarios.html';
     }
